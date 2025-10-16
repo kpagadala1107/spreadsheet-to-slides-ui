@@ -4,15 +4,15 @@ import './App.css';
 
 function App() {
   const [file, setFile] = useState(null);
-  const [prompt, setPrompt] = useState('');
+  const [targetAudience, setTargetAudience] = useState('');
   const [downloading, setDownloading] = useState(false);
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
   };
 
-  const handlePromptChange = (e) => {
-    setPrompt(e.target.value);
+  const handleTargetAudienceChange = (e) => {
+    setTargetAudience(e.target.value);
   };
 
   const handleSubmit = async () => {
@@ -21,7 +21,7 @@ function App() {
     setDownloading(true);
     const formData = new FormData();
     formData.append('file', file);
-    formData.append('prompt', prompt);
+    formData.append('targetAudience', targetAudience);
     
     try {
       const response = await axios.post('http://localhost:8080/api/convert', formData, {
@@ -73,12 +73,12 @@ function App() {
 
         <div className="prompt-section">
           <label className="prompt-label">
-            💭 Customization Prompt (Optional)
+            Target Audience
           </label>
           <textarea
-            value={prompt}
-            onChange={handlePromptChange}
-            placeholder="Describe how you want your presentation customized (e.g., 'Make it colorful with charts', 'Focus on key metrics', 'Add business themes')..."
+            value={targetAudience}
+            onChange={handleTargetAudienceChange}
+            placeholder="Describe your target audience (e.g., 'Executives', 'Sales Team', 'Marketing Department')..."
             className="prompt-input"
             rows="3"
           />
