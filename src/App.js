@@ -24,7 +24,7 @@ function App() {
     formData.append('targetAudience', targetAudience);
     
     try {
-      const response = await axios.post('http://localhost:8080/api/convert', formData, {
+      const response = await axios.post('https://spreadsheet-to-slides-production.up.railway.app/api/convert', formData, {
         responseType: 'blob'
       });
       
